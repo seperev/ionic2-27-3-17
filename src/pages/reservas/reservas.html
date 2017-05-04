@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Reservar
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+<form [formGroup]="reserva">
+        <ion-list>
+        
+        <ion-item *ngFor="let u of us | async">
+            <ion-label >Nombre</ion-label>
+            <ion-input type="text" id="nombre" formControlName="nombre" value="{{u.nombre}}" readonly="readonly"></ion-input>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label>Hora</ion-label>
+          <ion-input type="text" id="hora" formControlName="hora" value="{{hora}}" readonly="readonly"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Pista</ion-label>
+          <ion-input type="text" formControlName="pista" id="pista" value="{{pista}}" readonly="readonly"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label >Número abonados</ion-label>
+            <ion-input type="number" id="abonados" formControlName="abonados"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label >Número no abonados</ion-label>
+            <ion-input type="number" id="no abonados" formControlName="noabonados"></ion-input>
+        </ion-item>
+    </ion-list>
+
+</form>
+</ion-content>

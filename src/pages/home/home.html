@@ -1,0 +1,201 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Reservas
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+  <!--
+      <ion-list>
+        <ion-item *ngFor="let usuario of usuarios | async" (click)="showOptions(usuario.$key, usuario.nombre)">
+          {{usuario.nombre}} {{usuario.apellido}}          
+        </ion-item>
+      </ion-list>
+
+      <ion-buttons end>
+        <button ion-button icon-only (click)="addUsuario()">
+          <ion-icon name="add"></ion-icon>
+        </button>
+               
+      
+
+      </ion-buttons>
+-->
+      
+
+<ion-content >
+
+  <!--<ion-card class="fecha"> -->
+    <!--<ion-card-header color="primary">Fecha</ion-card-header>
+    <ion-card-content>-->
+      <div class="div">
+      <div class="fecha">
+        <label>Fecha: </label>
+          <!--<ion-label>Fecha</ion-label>-->
+          <ion-datetime id="b" class="b"
+            displayFormat="DD/MM/YYYY"
+            pikerFormat="YYY  DD MM"
+            [(ngModel)]="fecha"
+            cancelText="Cancelar"
+            doneText="OK"
+            min={{minFecha}}
+            max={{maxFecha}}
+            (ionChange)="verDia(fecha)"
+            >            
+          </ion-datetime>
+        
+      </div>
+
+      <!--
+      <div>
+        <button ion-button (click)="verDia(fecha)" class="boton">Ver Reservas</button>
+      </div>
+      <p text-center id="fe">{{fecha.substr(0,10)}}</p>-->
+      
+      </div>  
+      <!--</ion-list>-->
+    <!--  
+    </ion-card-content>
+  </ion-card>
+  -->
+
+  <ion-list *ngFor="let z of a">
+    <ion-item class="item-divider">
+      {{z.clave}}
+    </ion-item>
+    <ion-item>
+      <ion-list *ngFor="let x of z.valor">
+        <button id="{{z.clave}}" ion-button (click)="reservar($event)">
+          {{x}}
+        </button>
+      </ion-list>
+    </ion-item>
+  </ion-list>
+
+<!--
+<ion-list>
+  <ion-item class="item-divider">
+    10:00
+  </ion-item>
+  <ion-item>
+    <ion-list *ngFor="let r of res | async">
+      <ion-item *ngIf="comprobar('10:00', r.horaInicio, r.horaFin)">
+        {{r.nombrePista}}
+      </ion-item>
+    </ion-list>
+  </ion-item>
+</ion-list>
+-->
+
+
+<ion-list *ngFor="let r of res | async">
+    <ion-item>{{r.nombre}}</ion-item>
+</ion-list>
+
+
+<!--
+<ion-list>
+    <ion-item class="item-divider"  >
+        Cabecera
+    </ion-item>
+    <ion-item>
+      <ion-list>
+        <button ion-button>Pista 1</button>
+        <button ion-button>Pista 2</button>
+        <button ion-button>Pista 3</button>
+      </ion-list>
+    </ion-item>
+    <ion-item>Elemento 2</ion-item>
+    <ion-item>
+      <ion-toggle ng-model = "showDelete2">
+        Show Delete 2
+      </ion-toggle>
+      <ion-label>Elemento 3</ion-label>
+    </ion-item>
+    
+    <ion-list id="prueba">
+      <ion-item class="item-divider" (click)="prueba()" >
+        Cabecera
+      </ion-item>
+    </ion-list>
+    
+      <ion-select>
+        <ion-option>Opcion 1</ion-option>
+        <ion-option>Opcion 2</ion-option>
+      </ion-select>
+    
+</ion-list>
+-->
+
+<!--
+  <ion-row>
+    <ion-col class="hora"></ion-col>
+    <ion-col *ngFor="let pista of pistas | async">
+      {{pista.nombre}}
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col class="hora">10:00</ion-col>
+    <ion-col *ngFor="let pista of pistas | async">
+      
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col class="hora">11:00</ion-col>
+    <ion-col *ngFor="let pista of pistas | async">
+      
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col class="hora">12:00</ion-col>
+    <ion-col *ngFor="let pista of pistas | async">
+      
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col class="hora">14:00</ion-col>
+    <ion-col *ngFor="let pista of pistas | async">
+      
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col class="hora">15:00</ion-col>
+    <ion-col *ngFor="let pista of pistas | async">
+      
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col class="hora">16:00</ion-col>
+    <ion-col *ngFor="let pista of pistas | async">
+      
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col class="hora">17:00</ion-col>
+    <ion-col *ngFor="let pista of pistas | async">
+      
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col class="hora">18:00</ion-col>
+    <ion-col *ngFor="let pista of pistas | async">
+      
+    </ion-col>
+  </ion-row>
+-->
+
+  <button ion-button button-possitive (click)="logout()">Cerrar sesión</button>
+  
+  <button ion-button button-possitive (click)="irADatos()">Datos personales</button>
+  
+
+</ion-content>

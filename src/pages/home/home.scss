@@ -1,0 +1,42 @@
+page-home {
+.cell{
+   display: block;
+   width: 33%;
+   border: 2px solid black
+}
+
+table{
+    border: 2px solid black;
+    width: 33%
+}
+  ion-col  {
+    background-color: #F9FAFB;
+    padding: 5px;
+    border: 1px solid #ddd;
+    //border-radius: 2px;
+    text-align: center;
+}
+
+
+.b{
+    margin: auto;
+}
+
+.div{
+   text-align: center;
+   align-content: center;
+   
+}
+
+
+.fecha{
+    float: left;
+    width: 50%;    
+
+}
+
+.boton{
+    float: left
+}
+
+}

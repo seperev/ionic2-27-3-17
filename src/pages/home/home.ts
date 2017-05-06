@@ -9,6 +9,7 @@ import { AuthProvider } from '../auth-provider';
 import { DataProvider } from '../data-provider';
 import { Reservas } from '../reservas/reservas';
 import { Datos } from '../datos';
+import { Admin } from '../administrador/admin';
 
 import firebase from 'firebase';
 
@@ -121,6 +122,10 @@ export class HomePage {
     });
     */
     
+  }
+
+  admin(){
+    this.navCtrl.push(Admin);
   }
 
   reservar(e){

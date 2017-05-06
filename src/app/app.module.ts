@@ -7,6 +7,9 @@ import { Auth } from '../pages/autenticacion';
 import { Reservas } from '../pages/reservas/reservas';
 import { Registro } from '../pages/registro';
 import { Datos } from '../pages/datos';
+import { Admin } from '../pages/administrador/admin';
+import { ListRes } from '../pages/administrador/listres/listres';
+import { ListUs } from '../pages/administrador/listus/listus';
 
 import { AuthProvider } from '../pages/auth-provider';
 import { DataProvider } from '../pages/data-provider';
@@ -59,7 +62,10 @@ const myFirebaseAuthConfig = {
     Reservas,
     Auth,
     Registro,
-    Datos
+    Datos,
+    Admin,
+    ListRes,
+    ListUs
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -75,7 +81,10 @@ const myFirebaseAuthConfig = {
     Reservas,
     Auth,
     Registro,
-    Datos
+    Datos,
+    Admin,
+    ListRes,
+    ListUs
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, AuthProvider, DataProvider]
 })

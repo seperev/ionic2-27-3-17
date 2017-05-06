@@ -26,6 +26,7 @@
 
 <ion-content >
 
+
   <!--<ion-card class="fecha"> -->
     <!--<ion-card-header color="primary">Fecha</ion-card-header>
     <ion-card-content>-->
@@ -54,6 +55,9 @@
       <p text-center id="fe">{{fecha.substr(0,10)}}</p>-->
       
       </div>  
+      
+  <button ion-button button-possitive (click)="admin()">Administracion</button>
+
       <!--</ion-list>-->
     <!--  
     </ion-card-content>
@@ -196,6 +200,7 @@
   <button ion-button button-possitive (click)="logout()">Cerrar sesión</button>
   
   <button ion-button button-possitive (click)="irADatos()">Datos personales</button>
+  
   
 
 </ion-content>

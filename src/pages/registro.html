@@ -24,11 +24,11 @@
     <ion-list>
         <ion-item>
             <ion-label >Nombre</ion-label>
-            <ion-input type="text" id="nombre" formControlName="nombre"></ion-input>
+            <ion-input type="text" id="nombre" formControlName="nombre" required></ion-input>
         </ion-item>
         <ion-item>
             <ion-label >DNI</ion-label>
-            <ion-input type="text" id="dni" formControlName="dni"></ion-input>
+            <ion-input type="text" id="dni" formControlName="dni" required></ion-input>
         </ion-item>
         <ion-item>
             <ion-label >Telefono</ion-label>
@@ -36,7 +36,7 @@
         </ion-item>
         <ion-item>
             <ion-label >Nivel de juego</ion-label>
-                <ion-select id="nivel" formControlName="nivel">
+                <ion-select id="nivel" formControlName="nivel" required>
                     <ion-option>Bajo</ion-option>
                     <ion-option>Medio</ion-option>
                     <ion-option>Alto</ion-option>

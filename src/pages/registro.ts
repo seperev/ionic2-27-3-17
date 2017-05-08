@@ -8,6 +8,7 @@ import { AngularFireModule, AuthMethods, FirebaseListObservable, AngularFire } f
 import { AuthProvider } from '../pages/auth-provider'
 
 import { HomePage } from '../pages/home/home'
+import { ToastController } from 'ionic-angular';
 
 @Component({
   selector: 'page-registro',
@@ -24,13 +25,15 @@ export class Registro {
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               af: AngularFire,
-              public auth: AuthProvider
+              public auth: AuthProvider,
+              public toastCtrl: ToastController
               ) 
   {
     this.usuarios = af.database.list('/usuarios');
   }
 
   ngOnInit() {
+
     this.loginForm = new FormGroup({
         email: new FormControl("",[Validators.required]),
         password: new FormControl("",Validators.required),
@@ -39,16 +42,31 @@ export class Registro {
     this.login = new FormGroup({
         nombre: new FormControl(""),
         dni: new FormControl("",Validators.required),
-        telefono: new FormControl("",Validators.required),
+        telefono: new FormControl(""),
         abonado: new FormControl(""),
         nivel: new FormControl(""),
         notificaciones: new FormControl(""),
     })
   }
 
-  createAccount() {    
-    let credentials = this.loginForm.value;
+  createAccount() {
     let datos = this.login.value;
+    let encontrado = false;
+    this.usuarios.subscribe(items => {
+      items.forEach(usuario => {
+        if(usuario.nombre == datos.nombre){
+              let toast = this.toastCtrl.create({
+                message: 'El usuario ya existe',
+                duration: 3000
+              });
+              toast.present();
+              encontrado = true;
+        }
+      })
+    });
+    if(!encontrado){
+    let credentials = this.loginForm.value;
+    
     this.auth.createAccount(credentials)
     .then((data) => {
       console.log("uid: ",data.uid);
@@ -65,6 +83,7 @@ export class Registro {
     }, (error) => {
       console.log("Error: ",error.message);
     });
+    }
     
   };
 }

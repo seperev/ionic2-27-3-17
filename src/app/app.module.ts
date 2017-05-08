@@ -65,7 +65,7 @@ const myFirebaseAuthConfig = {
     Datos,
     Admin,
     ListRes,
-    ListUs
+    ListUs,
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -84,7 +84,7 @@ const myFirebaseAuthConfig = {
     Datos,
     Admin,
     ListRes,
-    ListUs
+    ListUs,
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, AuthProvider, DataProvider]
 })

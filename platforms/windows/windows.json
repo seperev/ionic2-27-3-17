@@ -11,6 +11,10 @@
                         {
                             "xml": "<preference name=\"WindowsToastCapable\" value=\"true\" />",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Toast\" value=\"Toast\" />",
+                            "count": 1
                         }
                     ]
                 }
@@ -38,6 +42,9 @@
         },
         "phonegap-plugin-push": {
             "SENDER_ID": "334413686662",
+            "PACKAGE_NAME": "V2 Test"
+        },
+        "cordova-plugin-x-toast": {
             "PACKAGE_NAME": "V2 Test"
         }
     },
@@ -127,6 +134,27 @@
             "file": "plugins/phonegap-plugin-push/src/windows/PushPluginProxy.js",
             "pluginId": "phonegap-plugin-push",
             "runs": true
+        },
+        {
+            "id": "cordova-plugin-x-toast.Toast",
+            "file": "plugins/cordova-plugin-x-toast/www/Toast.js",
+            "pluginId": "cordova-plugin-x-toast",
+            "clobbers": [
+                "window.plugins.toast"
+            ]
+        },
+        {
+            "id": "cordova-plugin-x-toast.tests",
+            "file": "plugins/cordova-plugin-x-toast/test/tests.js",
+            "pluginId": "cordova-plugin-x-toast"
+        },
+        {
+            "id": "cordova-plugin-x-toast.ToastProxy",
+            "file": "plugins/cordova-plugin-x-toast/src/windows/toastProxy.js",
+            "pluginId": "cordova-plugin-x-toast",
+            "merges": [
+                ""
+            ]
         }
     ],
     "plugin_metadata": {
@@ -136,6 +164,7 @@
         "cordova-plugin-statusbar": "2.2.1",
         "cordova-plugin-device": "1.1.4",
         "cordova-plugin-splashscreen": "4.0.1",
-        "phonegap-plugin-push": "1.10.2"
+        "phonegap-plugin-push": "1.10.2",
+        "cordova-plugin-x-toast": "2.6.0"
     }
 }

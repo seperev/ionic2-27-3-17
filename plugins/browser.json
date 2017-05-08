@@ -28,6 +28,9 @@
         "phonegap-plugin-push": {
             "SENDER_ID": "334413686662",
             "PACKAGE_NAME": "io.ionic.starter"
+        },
+        "cordova-plugin-x-toast": {
+            "PACKAGE_NAME": "io.ionic.starter"
         }
     },
     "dependent_plugins": {}

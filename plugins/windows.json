@@ -28,6 +28,9 @@
         "phonegap-plugin-push": {
             "SENDER_ID": "334413686662",
             "PACKAGE_NAME": "V2 Test"
+        },
+        "cordova-plugin-x-toast": {
+            "PACKAGE_NAME": "V2 Test"
         }
     },
     "dependent_plugins": {}

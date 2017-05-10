@@ -7,8 +7,27 @@
 </ion-header>   
 
 <ion-content >
-    <ion-list *ngFor="let r of reservas | async">
-        <ion-item>{{r.nombre}}</ion-item>
+
+      
+      <div class="fecha">
+        <label>Fecha: </label>
+          <!--<ion-label>Fecha</ion-label>-->
+          <ion-datetime id="b" class="b"
+            displayFormat="DD/MM/YYYY"
+            pikerFormat="YYY  DD MM"
+            [(ngModel)]="fecha"
+            cancelText="Cancelar"
+            doneText="OK"
+            min={{minFecha}}
+            max={{maxFecha}}
+            (ionChange)="verDia(fecha)"
+            >            
+          </ion-datetime>
+        
+      </div>
+
+    <ion-list *ngFor="let r of res | async">
+        <button ion-button (click)="verReserva(r)">{{r.nombre}}</button>
     </ion-list>
 </ion-content>
 

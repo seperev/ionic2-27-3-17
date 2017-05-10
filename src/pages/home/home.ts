@@ -62,7 +62,7 @@ export class HomePage {
     this.res = af.database.list('/reservas', {
       query: {
         orderByChild: 'dia',
-        equalTo: "2017-04-25"
+        equalTo: this.fecha.substr(0,10)
       }
     });    
     let rescargadas = false;
@@ -139,7 +139,8 @@ export class HomePage {
 
     this.navCtrl.push(Reservas, {
       hora: hora,
-      pista: nompista
+      pista: nompista,
+      dia: this.fecha.substr(0,10)
     })
 
   }

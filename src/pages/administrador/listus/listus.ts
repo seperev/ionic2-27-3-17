@@ -6,7 +6,7 @@ import {AngularFire, FirebaseListObservable, AuthProviders, AuthMethods} from 'a
 import { NavController, AlertController, ActionSheetController } from 'ionic-angular';
 
 
-
+import { Usuario } from '../usuario';
 
 import firebase from 'firebase';
 
@@ -27,5 +27,22 @@ export class ListUs {
                   this.usuarios = this.af.database.list('/usuarios');
   }
 
+  verUsuario(u){
+    let nombre = u.nombre;
+    let dni = u.dni;
+    let telefono = u.telefono;
+    let abonado = u.abonado;
+    let nivel = u.nivel;
+    let notificaciones = u.notificaciones;
+
+    this.navCtrl.push(Usuario, {
+      nombre: nombre,
+      dni: dni,
+      telefono: telefono,
+      abonado: abonado,
+      nivel: nivel,
+      notificaciones: notificaciones
+    })
+  }
 
 }

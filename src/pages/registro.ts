@@ -16,6 +16,7 @@ import { ToastController } from 'ionic-angular';
 })
 export class Registro {
 
+  booleanos: any;
   loginForm:any;
   ab: boolean;
   notificaciones: boolean;
@@ -30,6 +31,10 @@ export class Registro {
               ) 
   {
     this.usuarios = af.database.list('/usuarios');
+    this.booleanos = {
+      ab: false,
+      notificaciones: false
+    }
   }
 
   ngOnInit() {
@@ -40,18 +45,17 @@ export class Registro {
         
     });
     this.login = new FormGroup({
-        nombre: new FormControl(""),
+        nombre: new FormControl("",Validators.required),
         dni: new FormControl("",Validators.required),
         telefono: new FormControl(""),
-        abonado: new FormControl(""),
         nivel: new FormControl(""),
-        notificaciones: new FormControl(""),
     })
   }
 
   createAccount() {
     let datos = this.login.value;
     let encontrado = false;
+    let terminado = false;
     this.usuarios.subscribe(items => {
       items.forEach(usuario => {
         if(usuario.nombre == datos.nombre){
@@ -62,28 +66,46 @@ export class Registro {
               toast.present();
               encontrado = true;
         }
+        
+        
       })
-    });
-    if(!encontrado){
-    let credentials = this.loginForm.value;
-    
-    this.auth.createAccount(credentials)
-    .then((data) => {
-      console.log("uid: ",data.uid);
-      this.usuarios.push({
-              uid: data.uid,
-              nombre: datos.nombre,
-              dni: datos.dni,
-              telefono: datos.telefono,
-              abonado: this.ab,
-              nivelJuego: datos.nivel,
-              notificaciones: this.notificaciones,
-            });
+      terminado = true;
 
-    }, (error) => {
-      console.log("Error: ",error.message);
-    });
+      if(terminado){
+      if(!encontrado){
+      console.log("he entrado");
+      let credentials = this.loginForm.value;
+      
+      let ab = document.getElementById('abonado');
+      let n = document.getElementById('notificaciones');
+      console.log(ab.lastChild.attributes.item(6).nodeValue);
+      console.log(n.lastChild.attributes.item(6).nodeValue);
+
+
+      this.auth.createAccount(credentials)
+      .then((data) => {
+        console.log("uid: ",data.uid);
+        this.usuarios.push({
+                uid: data.uid,
+                nombre: datos.nombre,
+                dni: datos.dni,
+                telefono: datos.telefono,
+                abonado: ab.lastChild.attributes.item(6).nodeValue,
+                nivelJuego: datos.nivel,
+                notificaciones: n.lastChild.attributes.item(6).nodeValue,
+              });
+
+      }, (error) => {
+        console.log("Error: ",error.message);
+      });
+
+      //this.navCtrl.push(HomePage);
+      }
     }
+
+    });
+
+
     
   };
 }

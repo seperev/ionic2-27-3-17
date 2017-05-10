@@ -20,11 +20,12 @@ export class Datos {
   usersRef: any = firebase.database().ref('usuarios');
   user:any;
 
-  ab: boolean;
-  notificaciones: boolean;
+  abonado: any;
+  notificaciones: any;
   datos:any;
   usuarios: FirebaseListObservable<any>;
   usuario: FirebaseListObservable<any>;
+  
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -49,37 +50,84 @@ export class Datos {
         nombre: new FormControl(""),
         dni: new FormControl(""/*,Validators.required*/),
         telefono: new FormControl(""/*,Validators.required*/),
-        abonado: new FormControl(""),
         nivel: new FormControl(""),
-        notificaciones: new FormControl(""),
     })
     console.log(this.datos);
   }
 
   guardar(){
     let d = this.datos.value;
-    //this.usersRef.child().child('PHtCDdrK23NHLadJfNVvpHyqKkw1').update({nombre:d.nombre});
+    let niv = document.getElementById('nivel');
+    let ab = document.getElementById('abonado');
+    let n = document.getElementById('notificaciones');
+    //console.log(ab.lastChild.attributes.item(6).nodeValue);
+    //console.log(n.lastChild.attributes.item(6).nodeValue);
+    
+    //this.niv = '<div class="select-text">Medio</div>';
+
+    //console.log(niv.childNodes.item(2));
+    //this.usersRef.child().update({nombre:d.nombre});
     //this.usuario.nombre = this.datos.nombre;
     /*
     firebase.database().ref('usuarios/' + this.user.uid).update({
       nombre: 'hola'
     });*/
     //this.data.modificarUsuario(this.user.uid);
+    let termina = false;
+    let entra = 0;
     this.usuario.subscribe(items => {
       items.forEach(us => {
-        this.usuarios.remove(us);
+        //this.usuarios.remove(us);
+        firebase.database().ref('usuarios/' + us.$key).update({
+          nombre: d.nombre,
+          dni: d.dni,
+          telefono: d.telefono,
+          abonado: ab.lastChild.attributes.item(6).nodeValue,
+          nivelJuego: d.nivel,
+          notificaciones: n.lastChild.attributes.item(6).nodeValue,
+        })
+        console.log(us.$key);
+        /*
+        us.nombre.update(d.nombre);
+        us.dni.update(d.dni);
+        us.telefono.set(d.telefono);
+        us.abonado.set(ab.lastChild.attributes.item(6).nodeValue);
+        us.nivel.set(d.nivel);
+        us.notificaciones.set(n.lastChild.attributes.item(6).nodeValue);
+        */
+
+        //this.usuarios.update(us);
         //us.nombre === 'añsldfjaslf'
       })
+      
+      entra++;
+      termina = true;
+      //console.log('hola');
     })
-    this.usuarios.push({
-      nombre:d.nombre,
-      dni: d.dni,
-      telefono: d.telefono,
-      abonado: d.abonado,
-      nivel: d.nivel,
-      notificaciones: d.notificaciones,
-      uid: this.user.uid
+    this.usuario.subscribe(items => {
+      //console.log(entra);
     })
+    //console.log(entra);
+    if(termina){
+      //console.log("terminado");
+      /*
+      this.usuarios.push({
+        nombre:d.nombre,
+        dni: d.dni,
+        telefono: d.telefono,
+        abonado: ab.lastChild.attributes.item(6).nodeValue,
+        nivel: d.nivel,
+        notificaciones: n.lastChild.attributes.item(6).nodeValue,
+        uid: this.user.uid
+      })
+      */
+      
+    }
+    else{
+      //console.log("no ha terminado");
+    }
+    
+
     //this.usuarios.remove();
     /*
     this.usuario.subscribe(items => {

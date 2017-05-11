@@ -33,11 +33,11 @@
         </ion-item>
         <ion-item>
             <ion-label >Abonado</ion-label>
-            <ion-toggle id="abonado" formControlName="abonado" [(ngModel)]="ab" value="true"></ion-toggle>
+            <ion-toggle id="abonado" formControlName="abonado" checked={{abonado}}></ion-toggle>
         </ion-item>
         <ion-item>
             <ion-label>¿Desea recibir notificaciones?</ion-label>
-            <ion-toggle id="notificaciones" formControlName="notificaciones" [(ngModel)]="notificaciones">
+            <ion-toggle id="notificaciones" formControlName="notificaciones" checked={{notificaciones}}>
             </ion-toggle>
         </ion-item>
     </ion-list>
@@ -47,6 +47,7 @@
           <ion-icon name="person"></ion-icon>
           Guardar</button>
         <button ion-button full clear favorite (click)="cancelar()">Cancelar</button>
+        <button ion-button (click)="eliminar()">Eliminar</button>
     </div>
     <div>
         <ion-list *ngFor="let a of usuario | async">

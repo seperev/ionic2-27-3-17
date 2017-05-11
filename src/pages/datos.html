@@ -44,7 +44,7 @@
     </ion-list>
 
     <div>
-      <button ion-button full clear favorite (click)="guardar()" [disabled]="!datos.valid">
+      <button ion-button full clear favorite (click)="guardar(datos.value)" [disabled]="!datos.valid">
           <ion-icon name="person"></ion-icon>
           Guardar</button>
         <button ion-button full clear favorite (click)="cancelar()">Cancelar</button>

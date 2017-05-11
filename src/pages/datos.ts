@@ -26,6 +26,10 @@ export class Datos {
   usuarios: FirebaseListObservable<any>;
   usuario: FirebaseListObservable<any>;
   
+  nom = "";
+  dn = "";
+  tel = "";
+  ni = "";
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -42,24 +46,88 @@ export class Datos {
             equalTo: this.user.uid
         }
     });
+
+    this.usuario.subscribe(items =>{
+      items.forEach(u => {
+        this.nom = u.nombre,
+        this.dn = u.dni,
+        this.tel = u.telefono,
+        this.ni = u.nivel
+      })
+      console.log('Ahora entra para llenar los datos del usuario');
+        this.datos = new FormGroup({
+        nombre: new FormControl(this.nom),
+        dni: new FormControl(this.dn),
+        telefono: new FormControl(this.tel),
+        nivel: new FormControl(this.ni),
+    })
+    })
+      
     console.log(this.user.uid);
   }
 
+
   ngOnInit() {
-    this.datos = new FormGroup({
-        nombre: new FormControl(""),
-        dni: new FormControl(""/*,Validators.required*/),
-        telefono: new FormControl(""/*,Validators.required*/),
-        nivel: new FormControl(""),
+
+    let dat: any;
+    let terminado = false;
+    /*
+    this.usuario.subscribe(items =>{
+      items.forEach(u => {
+        dat = {
+            nombre: u.nombre,
+            dni: u.dni,
+            telefono: u.telefono,
+            nivel: u.nivel,
+        }
+      })
+      terminado = true;
     })
+    if(terminado){
+    this.datos = new FormGroup({
+          nombre: new FormControl(dat.nombre),
+          dni: new FormControl(dat.dni),
+          telefono: new FormControl(dat.telefono),
+          nivel: new FormControl(dat.nivel),
+      })}*/
+
+    
+    this.datos = new FormGroup({
+        nombre: new FormControl(this.nom),
+        dni: new FormControl(this.dn),
+        telefono: new FormControl(this.tel),
+        nivel: new FormControl(this.ni),
+    })
+    
     console.log(this.datos);
   }
 
-  guardar(){
+  guardar(dat){
+    /*
+    this.datos = new FormGroup({
+      nombre: new FormControl(''),
+      dni: new FormControl(""),
+      telefono: new FormControl(""),
+      nivel: new FormControl(""),
+    })*/
+
+/*
+    this.datos = new FormGroup({
+        nombre: new FormControl(this.nom),
+        dni: new FormControl(this.dn),
+        telefono: new FormControl(this.tel),
+        nivel: new FormControl(this.ni),
+    })
+    */
+
     let d = this.datos.value;
     let niv = document.getElementById('nivel');
     let ab = document.getElementById('abonado');
     let n = document.getElementById('notificaciones');
+    let nom = document.getElementById('dni');
+    //console.log('nombre ', nom);
+
+    console.log('datos al pulsar el boton',this.datos);
     //console.log(ab.lastChild.attributes.item(6).nodeValue);
     //console.log(n.lastChild.attributes.item(6).nodeValue);
     
@@ -73,6 +141,8 @@ export class Datos {
       nombre: 'hola'
     });*/
     //this.data.modificarUsuario(this.user.uid);
+
+    
     let termina = false;
     let entra = 0;
     this.usuario.subscribe(items => {
@@ -98,34 +168,14 @@ export class Datos {
 
         //this.usuarios.update(us);
         //us.nombre === 'añsldfjaslf'
+
+        
       })
-      
-      entra++;
-      termina = true;
-      //console.log('hola');
+
+      this.navCtrl.push(HomePage);
     })
-    this.usuario.subscribe(items => {
-      //console.log(entra);
-    })
-    //console.log(entra);
-    if(termina){
-      //console.log("terminado");
-      /*
-      this.usuarios.push({
-        nombre:d.nombre,
-        dni: d.dni,
-        telefono: d.telefono,
-        abonado: ab.lastChild.attributes.item(6).nodeValue,
-        nivel: d.nivel,
-        notificaciones: n.lastChild.attributes.item(6).nodeValue,
-        uid: this.user.uid
-      })
-      */
-      
-    }
-    else{
-      //console.log("no ha terminado");
-    }
+    
+
     
 
     //this.usuarios.remove();

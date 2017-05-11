@@ -41,7 +41,7 @@ export class ListUs {
       telefono: telefono,
       abonado: abonado,
       nivel: nivel,
-      notificaciones: notificaciones
+      noti: notificaciones
     })
   }
 

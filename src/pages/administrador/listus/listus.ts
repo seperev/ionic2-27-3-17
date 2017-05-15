@@ -27,13 +27,14 @@ export class ListUs {
                   this.usuarios = this.af.database.list('/usuarios');
   }
 
-  verUsuario(u){
+  verUsuario(u, clave){
     let nombre = u.nombre;
     let dni = u.dni;
     let telefono = u.telefono;
     let abonado = u.abonado;
     let nivel = u.nivel;
     let notificaciones = u.notificaciones;
+    let ref = firebase.database().ref('usuarios/' + clave);
 
     this.navCtrl.push(Usuario, {
       nombre: nombre,
@@ -41,7 +42,8 @@ export class ListUs {
       telefono: telefono,
       abonado: abonado,
       nivel: nivel,
-      noti: notificaciones
+      noti: notificaciones,
+      referencia: ref
     })
   }
 

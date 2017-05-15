@@ -33,7 +33,7 @@
         </ion-item>
         <ion-item>
             <ion-label >Abonado</ion-label>
-            <ion-toggle id="abonado"  checked={{us.abonado}}></ion-toggle>
+            <ion-toggle id="abonado"  checked={{us.abonado}} (ionChange)="actualizarAbonado()"></ion-toggle>
         </ion-item>
         <ion-item>
             <ion-label>¿Desea recibir notificaciones?</ion-label>

@@ -37,6 +37,7 @@ export class Usuario {
     noti: any;
     nombre: any;
     user: any;
+    ref: any;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -54,6 +55,7 @@ export class Usuario {
     this.abonado = this.navParams.get('abonado');
     this.nivel = this.navParams.get('nivel');
     this.noti = this.navParams.get('noti');
+    this.ref = this.navParams.get('referencia')
     //console.log(this.user.uid);
 
     this.user = firebase.auth().currentUser;
@@ -80,7 +82,27 @@ export class Usuario {
 
   guardar(){
     let d = this.datos.value;
+    this.ref.update({
+      nombre: d.nombre,
+      dni: d.dni,
+      telefono: d.telefono,
+      abonado: d.abonado,
+      nivelJuego: d.nivel,
+      notificaciones: d.notificaciones,
+    })
+    this.navCtrl.push(Admin);
+/*
+    firebase.database().ref('usuarios/-Kjly5Qk0VK2x3rQXt59').update({
+          nombre: d.nombre,
+          dni: d.dni,
+          telefono: d.telefono,
+          abonado: d.abonado,
+          nivelJuego: d.nivel,
+          notificaciones: d.notificaciones,
+        })*/
 
+    /* De la siguiente forma si que funciona, pero si modifico los valores dos veces seguidas falla el 
+    // programa entero y se queda pillado la aplicación y firebase  
     this.usuario.subscribe(items => {
       items.forEach(us => {
         firebase.database().ref('usuarios/' + us.$key).update({
@@ -95,6 +117,7 @@ export class Usuario {
       })
       this.navCtrl.push(Admin);
     })
+    */
   }
 
   eliminar(){

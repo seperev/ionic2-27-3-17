@@ -39,6 +39,10 @@ export class HomePage {
   maxFecha: string = (new Date().getFullYear()+3).toString();
   reservasRef: any = firebase.database().ref('reservas');
 
+    user:any;
+    u: FirebaseListObservable<any>;
+    referencia: any;
+
   constructor(public navCtrl: NavController,  
               public alertCtrl: AlertController, public af: AngularFire, 
               public actionSheetCtrl: ActionSheetController, 
@@ -121,6 +125,23 @@ export class HomePage {
       });
     });
     */
+
+
+    this.user = firebase.auth().currentUser;
+    this.u = this.af.database.list('/usuarios', {
+        query: {
+            orderByChild: 'uid',
+            equalTo: this.user.uid
+        }
+    });
+
+    this.u.subscribe(items =>{
+      items.forEach(u => {
+        this.referencia = firebase.database().ref('usuarios/' + u.$key)
+      })
+    })
+   
+
     
   }
 
@@ -132,8 +153,8 @@ export class HomePage {
     let elemento = event.srcElement;
     //let p = elemento.
     let padre = elemento.parentElement;
-    console.log(padre.id);
-    console.log(padre.textContent);
+    //console.log(padre.id);
+    //console.log(padre.textContent);
     let hora = padre.id;
     let nompista = elemento.textContent.replace(/(^\s*)|(\s*$)/g,""); //el .replace elimina los espacios en blanco
 
@@ -158,19 +179,19 @@ export class HomePage {
         n++;
         this.pi.push(pista.nombre)
       });
-      console.log('tamaño del array de pistas ' + n);
+      //console.log('tamaño del array de pistas ' + n);
       //console.log(pi);
-      console.log('horas ' +horas);
+      //console.log('horas ' +horas);
       //console.log(pi);
       for(let i = 0; i < horas.length; i++){
         let f = [];
-        console.log('tamaño ' + this.pi.length);
+        //console.log('tamaño ' + this.pi.length);
 
         for(let t = 0; t < this.pi.length; t++){
-          console.log('prueba');
+          //console.log('prueba');
           f.push(this.pi[t]);
         }
-        console.log(f);
+        //console.log(f);
         this.a.push({clave:horas[i], valor:f});
       } 
     })
@@ -206,7 +227,7 @@ export class HomePage {
     
     this.res.subscribe(items => {
     items.forEach(reserva => {
-      console.log('numero de reservas ' + t++);
+      //console.log('numero de reservas ' + t++);
       if(reserva != null){
       //console.log(reserva[0]);
       //console.log('paso 1');
@@ -215,7 +236,7 @@ export class HomePage {
         //console.log('hola ' + this.a[j].clave);
         //console.log('hora inicio de reserva '+ reserva[0].horaInicio)
         if(reserva.horaInicio == this.a[j].clave){
-          console.log("entra");
+          //console.log("entra");
           //this.a[j].remove();
 
           //var pistas = this.a[j].valor;
@@ -229,7 +250,7 @@ export class HomePage {
             
           }
           //this.a[j].valor = pistas;
-          console.log('eliminado');
+          //console.log('eliminado');
           /*var indice = this.a.indexOf(10);
           console.log('indice ' + indice);
           if (indice > -1) {
@@ -257,7 +278,10 @@ export class HomePage {
   }
 
   irADatos(){
-    this.navCtrl.push(Datos);
+
+    this.navCtrl.push(Datos, {
+      referencia: this.referencia
+    });
   }
 
   comprobar(hora, inicio, fin){
@@ -273,8 +297,8 @@ export class HomePage {
     // y luego voy recorriendo las reservas y voy eliminando del array las pistas que estén reservadas
     // en ese día. Una vez eliminadas todas las pistas ocupadas del array, muestro el array en la vista.
 
-    console.log("hora inicio" + inicio);
-    console.log("hora fin" + fin);
+    //console.log("hora inicio" + inicio);
+    //console.log("hora fin" + fin);
 
     var ini = Date.parse(inicio);
     var hor = Date.parse(hora);
@@ -298,8 +322,8 @@ export class HomePage {
 
 
   verDia(fecha){
-    console.log(fecha);
-    console.log(this.res);
+    //console.log(fecha);
+    //console.log(this.res);
     //window.location.reload();
     
     this.res = this.af.database.list('/reservas', {
@@ -312,7 +336,7 @@ export class HomePage {
     this.pistas.forEach(pista => {
       this.pi = [];
       this.pi.push(pista[0].nombre);
-      console.log("tamaño de pi " + this.pi.length);
+      //console.log("tamaño de pi " + this.pi.length);
       this.mostrarReservas();
       });
 
@@ -412,7 +436,7 @@ export class HomePage {
             res.push(snapshot.val().nombre)});
 
     var user = firebase.auth().currentUser;
-    console.log(user.uid);
+    //console.log(user.uid);
     this.navCtrl.push(Reservas);
     
   }

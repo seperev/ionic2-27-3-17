@@ -11,6 +11,7 @@ import { AuthProvider } from '../auth-provider';
 
 import { ListRes } from '../administrador/listres/listres';
 import { ListUs } from '../administrador/listus/listus';
+import { HomePage } from '../home/home';
 
 
 @Component({
@@ -31,6 +32,10 @@ export class Admin {
               public actionSheetCtrl: ActionSheetController, 
               public auth:AuthProvider
               ) {    
+  }
+
+  atras(){
+    this.navCtrl.push(HomePage);
   }
 
   verReservas(){

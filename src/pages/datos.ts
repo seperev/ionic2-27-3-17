@@ -31,6 +31,10 @@ export class Datos {
   tel = "";
   ni = "";
 
+  referencia: any;
+
+  
+
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public af: AngularFire,
@@ -53,6 +57,7 @@ export class Datos {
         this.dn = u.dni,
         this.tel = u.telefono,
         this.ni = u.nivel
+        //this.referencia = firebase.database().ref('usuarios/' + u.$key)
       })
       console.log('Ahora entra para llenar los datos del usuario');
         this.datos = new FormGroup({
@@ -62,7 +67,8 @@ export class Datos {
         nivel: new FormControl(this.ni),
     })
     })
-      
+
+    this.referencia = this.navParams.get('referencia');  
     console.log(this.user.uid);
   }
 
@@ -142,12 +148,29 @@ export class Datos {
     });*/
     //this.data.modificarUsuario(this.user.uid);
 
-    
+
     let termina = false;
     let entra = 0;
+
+    this.referencia.update({
+          nombre: d.nombre,
+          dni: d.dni,
+          telefono: d.telefono,
+          abonado: ab.lastChild.attributes.item(6).nodeValue,
+          nivelJuego: d.nivel,
+          notificaciones: n.lastChild.attributes.item(6).nodeValue
+        })
+        console.log('valor del toggle abonado ', ab.lastChild.attributes.item(6).nodeValue);
+        console.log('valor del toggle notificaciones ', n.lastChild.attributes.item(6).nodeValue);
+        this.navCtrl.push(HomePage);
+
+
+/*
     this.usuario.subscribe(items => {
       items.forEach(us => {
         //this.usuarios.remove(us);
+
+        
         firebase.database().ref('usuarios/' + us.$key).update({
           nombre: d.nombre,
           dni: d.dni,
@@ -156,6 +179,9 @@ export class Datos {
           nivelJuego: d.nivel,
           notificaciones: n.lastChild.attributes.item(6).nodeValue,
         })
+
+
+
         console.log(us.$key);
         /*
         us.nombre.update(d.nombre);
@@ -169,11 +195,11 @@ export class Datos {
         //this.usuarios.update(us);
         //us.nombre === 'añsldfjaslf'
 
-        
+      /*  
       })
 
       this.navCtrl.push(HomePage);
-    })
+    })*/
     
 
     
@@ -185,6 +211,11 @@ export class Datos {
         usuar.nombre === 'adios'
       })
     });*/
+  }
+
+  actualizarAbonado(){
+    let ab = document.getElementById('abonado');
+    this.abonado = ab.lastChild.attributes.item(6).nodeValue;
   }
 
   cancelar(){

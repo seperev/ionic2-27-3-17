@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="C:\Github\ionic2-27-3-17\platforms\android\CordovaLib\src\main\shaders"/></dataSet><dataSet config="debug"><source path="C:\Github\ionic2-27-3-17\platforms\android\CordovaLib\src\debug\shaders"/></dataSet></merger>

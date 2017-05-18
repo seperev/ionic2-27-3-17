@@ -1,0 +1,26 @@
+[
+    {
+        "outputFile": "C:\\Github\\ionic2-27-3-17\\platforms\\android\\CordovaLib\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-be\\values-be.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 105,
+                    "endColumn": 204,
+                    "endOffset": 305
+                },
+                "from": {
+                    "file": "C:\\Users\\practicas\\.android\\build-cache\\abc2ba85ed591689d8dc7a00f2d9288ea2df458b\\output\\res\\values-be\\values.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 0,
+                        "startOffset": 285,
+                        "endColumn": 204,
+                        "endOffset": 489
+                    }
+                }
+            }
+        ]
+    }
+]

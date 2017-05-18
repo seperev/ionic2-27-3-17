@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:334413686662:android:764d2cb7da3280eb",
         "android_client_info": {
-          "package_name": "io.ionic.starter"
+          "package_name": "org.apache.cordova"
         }
       },
       "oauth_client": [

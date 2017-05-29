@@ -31,7 +31,7 @@ buildscript {
     // and https://issues.apache.org/jira/browse/CB-8143
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.2'
-      classpath 'com.google.gms:google-services:3.0.0'
+        classpath 'com.google.gms:google-services:3.0.0'
     }
 }
 
@@ -175,7 +175,7 @@ android {
     }
 
     lintOptions {
-      abortOnError false;
+        abortOnError false;
     }
 
     compileSdkVersion cdvCompileSdkVersion
@@ -184,13 +184,13 @@ android {
     if (Boolean.valueOf(cdvBuildMultipleApks)) {
         productFlavors {
             armv7 {
-                versionCode defaultConfig.versionCode*10 + 2
+                versionCode defaultConfig.versionCode * 10 + 2
                 ndk {
                     abiFilters "armeabi-v7a", ""
                 }
             }
             x86 {
-                versionCode defaultConfig.versionCode*10 + 4
+                versionCode defaultConfig.versionCode * 10 + 4
                 ndk {
                     abiFilters "x86", ""
                 }
@@ -229,7 +229,8 @@ android {
             release {
                 // These must be set or Gradle will complain (even if they are overridden).
                 keyAlias = ""
-                keyPassword = "__unset" // And these must be set to non-empty in order to have the signing step added to the task graph.
+                keyPassword = "__unset"
+                // And these must be set to non-empty in order to have the signing step added to the task graph.
                 storeFile = null
                 storePassword = "__unset"
             }
@@ -251,10 +252,10 @@ dependencies {
     // SUB-PROJECT DEPENDENCIES START
     debugCompile(project(path: "CordovaLib", configuration: "debug"))
     releaseCompile(project(path: "CordovaLib", configuration: "release"))
-    compile "com.android.support:support-v13:23+"
-    compile "com.google.android.gms:play-services-gcm:10.2+"
-    compile "me.leolin:ShortcutBadger:1.1.14@aar"
     // SUB-PROJECT DEPENDENCIES END
+    compile 'com.android.support:support-v13:26.0.0-alpha1'
+    compile 'com.google.android.gms:play-services-gcm:10.2.6'
+    compile 'me.leolin:ShortcutBadger:1.1.14@aar'
 }
 
 def promptForReleaseKeyPassword() {
